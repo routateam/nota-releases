@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Nota — signing you in</title>
+<style>
+  body { font-family:Inter,-apple-system,system-ui,sans-serif; background:#f5f5f5; color:#1a1a1a;
+         min-height:100vh; display:flex; align-items:center; justify-content:center; margin:0; }
+  .card { background:#fff; border:1px solid #eaeaec; border-radius:20px; padding:40px;
+          width:380px; text-align:center; box-shadow:0 24px 60px rgba(0,0,0,.08); }
+  h1 { font-weight:700; font-size:24px; letter-spacing:-.5px; margin:0 0 8px; }
+  p { color:#8b8b8d; font-size:14.5px; margin:0 0 24px; }
+  .btn { display:inline-block; background:#191919; color:#fff; font-weight:600; font-size:15px;
+         padding:13px 22px; border-radius:12px; text-decoration:none; }
+  .muted { font-size:12.5px; color:#8b8b8d; margin-top:16px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>You're signed in ✓</h1>
+    <p>Returning to Nota — you can close this tab.</p>
+    <a class="btn" id="open" href="#">Open Nota</a>
+    <div class="muted">If Nota doesn't open automatically, click the button above.</div>
+  </div>
+<script>
+  // Forward the OAuth response (query AND fragment — PKCE code or tokens)
+  // straight into the app via its URL scheme. This page exists so the browser
+  // tab lands on a real https page instead of hanging on a custom-scheme
+  // navigation forever.
+  var target = "co.usenota.nota://auth-callback" + location.search + location.hash;
+  document.getElementById("open").setAttribute("href", target);
+  location.replace(target);
+</script>
+</body>
+</html>
